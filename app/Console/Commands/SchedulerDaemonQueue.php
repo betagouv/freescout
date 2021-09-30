@@ -31,7 +31,7 @@ class SchedulerDaemonQueue extends Command
   {
       while (true) {
           $this->line('Calling Daemon scheduler');
-          $this->call('queue:work --queue=emails,default --once --tries=1');
+          $this->call('queue:work');
           sleep($this->option('sleep'));
       }
   }
