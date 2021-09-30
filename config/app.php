@@ -188,7 +188,8 @@ return [
     */
     'queue_work_params' => ['--queue' => 'emails,default',
         '--sleep' => '5',
-        '--tries' => '1'
+        '--tries' => '1',
+        '--timeout' => '30'
     ],
 
     /*
