@@ -1,2 +1,2 @@
 postdeploy: php artisan migrate --force
-scheduler: node cron.js
+scheduler: php artisan queue:work --queue=high,default && php artisan schedule:daemon
