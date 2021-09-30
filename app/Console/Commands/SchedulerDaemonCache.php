@@ -30,7 +30,7 @@ class SchedulerDaemonCache extends Command
   public function handle()
   {
       while (true) {
-          $this->line('<info>[' . Carbon::now()->format('Y-m-d H:i:s') . ']</info> Calling scheduler queue');
+          $this->line('Calling cache clear');
           $this->call('cache:clear');
           sleep($this->option('sleep'));
       }
