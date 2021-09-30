@@ -31,7 +31,7 @@ class SchedulerDaemon extends Command
   {
       while (true) {
           $this->line('Calling scheduler basic');
-          $this->call('schedule:run');
+          $this->call('schedule:run --lifetime=60');
           sleep($this->option('sleep'));
       }
   }
