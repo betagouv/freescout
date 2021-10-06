@@ -30,7 +30,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Keep in mind that this function is also called on clearing cache.
-        
+        $schedule->call(function () {
+            print_r("test");
+        })->everyMinute();
+
         // Remove failed jobs
         $schedule->command('queue:flush')
             ->weekly();
@@ -126,7 +129,7 @@ class Kernel extends ConsoleKernel
                 sleep(1);
                 // Check processes again.
                 $worker_pids = $this->getRunningQueueProcesses();
-                
+
                 if (count($worker_pids) > 1) {
                     // Current process also has to be killed, as otherwise it "stucks"
                     // $current_pid = getmypid();
@@ -153,7 +156,7 @@ class Kernel extends ConsoleKernel
 
     /**
      * Get pids of the queue:work processes.
-     * 
+     *
      * @return [type] [description]
      */
     protected function getRunningQueueProcesses()

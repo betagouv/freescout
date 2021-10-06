@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2a6c5faa790dbf375da89dde575c3d8d7b5efb7e',
+        'reference' => 'f8359bd2b58ba3574b8fdbb66feacdffbcd592dd',
         'name' => 'freescout-helpdesk/freescout',
         'dev' => true,
     ),
@@ -253,7 +253,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2a6c5faa790dbf375da89dde575c3d8d7b5efb7e',
+            'reference' => 'f8359bd2b58ba3574b8fdbb66feacdffbcd592dd',
             'dev_requirement' => false,
         ),
         'fzaninotto/faker' => array(
