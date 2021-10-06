@@ -35,7 +35,8 @@
         "symfony/debug": "v3.4.18",
         "tormjens/eventy": "0.5.4",
         "watson/rememberable": "2.0.4",
-        "webklex/laravel-imap": "1.2.7"
+        "webklex/laravel-imap": "1.2.7",
+        "ext-imap": "*",
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "v3.2.0",
