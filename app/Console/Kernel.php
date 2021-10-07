@@ -5,7 +5,7 @@ namespace App\Console;
 use App\Misc\Mail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use TorMorten\Eventy\Filter;
+use TorMorten\Eventy\Facades\Events as Eventy;
 
 class Kernel extends ConsoleKernel
 {
