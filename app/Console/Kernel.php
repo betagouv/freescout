@@ -5,7 +5,6 @@ namespace App\Console;
 use App\Misc\Mail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use TorMorten\Eventy\Facades\Events as Eventy;
 
 class Kernel extends ConsoleKernel
 {
@@ -112,7 +111,16 @@ class Kernel extends ConsoleKernel
         }
 
         try {
-            $schedule = Eventy::filter('schedule', $schedule);
+            echo 'before';
+            print_r($schedule);
+            echo '\n';
+            echo 'after';
+
+            print_r(\Eventy);
+
+            $schedule = \Eventy::filter('schedule', $schedule);
+            print_r($schedule);
+            echo '\n';
 
             // Command runs as subprocess and sets cache mutex. If schedule:run command is killed
             // subprocess does not clear the mutex and it stays in the cache until cache:clear is executed.
