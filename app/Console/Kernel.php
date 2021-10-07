@@ -150,7 +150,6 @@ class Kernel extends ConsoleKernel
 
             $schedule->command('queue:work --sansdaemon', $queue_work_params)
                 ->everyMinute()
-                ->once()
                 ->withoutOverlapping()
                 ->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
         } catch (\Exception $ex) {
