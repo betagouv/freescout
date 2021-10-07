@@ -112,13 +112,13 @@ class Kernel extends ConsoleKernel
 
         try {
             echo 'before';
-            print_r($schedule);
+//            print_r($schedule);
             echo '\n';
 
             $schedule = \Eventy::filter('schedule', $schedule);
             echo 'after';
 
-            print_r($schedule);
+//            print_r($schedule);
             echo '\n';
 
             // Command runs as subprocess and sets cache mutex. If schedule:run command is killed
