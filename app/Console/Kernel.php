@@ -33,125 +33,125 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             print_r("test");
         })->everyMinute();
-
-        // Remove failed jobs
-        $schedule->command('queue:flush')
-            ->weekly();
-
-        // Restart processing queued jobs (just in case)
-        $schedule->command('queue:restart')
-            ->hourly();
-
-        $schedule->command('freescout:fetch-monitor')
-            ->everyMinute()
-            ->withoutOverlapping();
-
-        $schedule->command('freescout:update-folder-counters')
-            ->hourly();
-
-        $schedule->command('freescout:module-check-licenses')
-            ->daily();
-
-        // Check if user finished viewing conversation.
-        $schedule->command('freescout:check-conv-viewers')
-            ->everyMinute()
-            ->withoutOverlapping();
-
-        $schedule->command('freescout:clean-send-log')
-            ->monthly();
-
-        // Logs monitoring.
-        $alert_logs_period = config('app.alert_logs_period');
-        if (config('app.alert_logs') && $alert_logs_period) {
-            $logs_cron = '';
-            switch ($alert_logs_period) {
-                case 'hour':
-                    $logs_cron = '0 * * * *';
-                    break;
-                case 'day':
-                    $logs_cron = '0 0 * * *';
-                    break;
-                case 'week':
-                    $logs_cron = '0 0 * * 0';
-                    break;
-                case 'month':
-                    $logs_cron = '0 0 1 * *';
-                    break;
-            }
-            if ($logs_cron) {
-                $schedule->command('freescout:logs-monitor')
-                    ->cron($logs_cron)
-                    ->withoutOverlapping();
-            }
-        }
-
-        // Fetch emails from mailboxes
-        $fetch_command = $schedule->command('freescout:fetch-emails')
-            ->withoutOverlapping()
-            ->sendOutputTo(storage_path().'/logs/fetch-emails.log');
-
-        switch (config('app.fetch_schedule')) {
-            case Mail::FETCH_SCHEDULE_EVERY_FIVE_MINUTES:
-                $fetch_command->everyFiveMinutes();
-                break;
-            case Mail::FETCH_SCHEDULE_EVERY_TEN_MINUTES:
-                $fetch_command->everyTenMinutes();
-                break;
-            case Mail::FETCH_SCHEDULE_EVERY_FIFTEEN_MINUTES:
-                $fetch_command->everyFifteenMinutes();
-                break;
-            case Mail::FETCH_SCHEDULE_EVERY_THIRTY_MINUTES:
-                $fetch_command->everyThirtyMinutes();
-                break;
-            case Mail::FETCH_SCHEDULE_HOURLY:
-                $fetch_command->Hourly();
-                break;
-            default:
-                $fetch_command->everyMinute();
-                break;
-        }
-
-        $schedule = \Eventy::filter('schedule', $schedule);
-
-        // Command runs as subprocess and sets cache mutex. If schedule:run command is killed
-        // subprocess does not clear the mutex and it stays in the cache until cache:clear is executed.
-        // By default, the lock will expire after 24 hours.
-
-        if (function_exists('shell_exec')) {
-            $running_commands = $this->getRunningQueueProcesses();
-
-            if (count($running_commands) > 1) {
-                // Stop all queue:work processes.
-                // queue:work command is stopped by settings a cache key
-                \Helper::queueWorkRestart();
-                // Sometimes processes stuck and just continue running, so we need to kill them.
-                // Sleep to let processes stop.
-                sleep(1);
-                // Check processes again.
-                $worker_pids = $this->getRunningQueueProcesses();
-
-                if (count($worker_pids) > 1) {
-                    // Current process also has to be killed, as otherwise it "stucks"
-                    // $current_pid = getmypid();
-                    // foreach ($worker_pids as $i => $pid) {
-                    //     if ($pid == $current_pid) {
-                    //         unset($worker_pids[$i]);
-                    //         break;
-                    //     }
-                    // }
-                    shell_exec('kill '.implode(' | kill ', $worker_pids));
-                }
-            }
-        }
-
-        $queue_work_params = Config('app.queue_work_params');
-        // Add identifier to avoid conflicts with other FreeScout instances on the same server.
-        $queue_work_params['--queue'] .= ','.\Helper::getWorkerIdentifier();
-
-        $schedule->command('queue:work', $queue_work_params)
-            ->everyMinute()
-            ->withoutOverlapping()
-            ->sendOutputTo(storage_path().'/logs/queue-jobs.log');
+//
+//        // Remove failed jobs
+//        $schedule->command('queue:flush')
+//            ->weekly();
+//
+//        // Restart processing queued jobs (just in case)
+//        $schedule->command('queue:restart')
+//            ->hourly();
+//
+//        $schedule->command('freescout:fetch-monitor')
+//            ->everyMinute()
+//            ->withoutOverlapping();
+//
+//        $schedule->command('freescout:update-folder-counters')
+//            ->hourly();
+//
+//        $schedule->command('freescout:module-check-licenses')
+//            ->daily();
+//
+//        // Check if user finished viewing conversation.
+//        $schedule->command('freescout:check-conv-viewers')
+//            ->everyMinute()
+//            ->withoutOverlapping();
+//
+//        $schedule->command('freescout:clean-send-log')
+//            ->monthly();
+//
+//        // Logs monitoring.
+//        $alert_logs_period = config('app.alert_logs_period');
+//        if (config('app.alert_logs') && $alert_logs_period) {
+//            $logs_cron = '';
+//            switch ($alert_logs_period) {
+//                case 'hour':
+//                    $logs_cron = '0 * * * *';
+//                    break;
+//                case 'day':
+//                    $logs_cron = '0 0 * * *';
+//                    break;
+//                case 'week':
+//                    $logs_cron = '0 0 * * 0';
+//                    break;
+//                case 'month':
+//                    $logs_cron = '0 0 1 * *';
+//                    break;
+//            }
+//            if ($logs_cron) {
+//                $schedule->command('freescout:logs-monitor')
+//                    ->cron($logs_cron)
+//                    ->withoutOverlapping();
+//            }
+//        }
+//
+//        // Fetch emails from mailboxes
+//        $fetch_command = $schedule->command('freescout:fetch-emails')
+//            ->withoutOverlapping()
+//            ->sendOutputTo(storage_path().'/logs/fetch-emails.log');
+//
+//        switch (config('app.fetch_schedule')) {
+//            case Mail::FETCH_SCHEDULE_EVERY_FIVE_MINUTES:
+//                $fetch_command->everyFiveMinutes();
+//                break;
+//            case Mail::FETCH_SCHEDULE_EVERY_TEN_MINUTES:
+//                $fetch_command->everyTenMinutes();
+//                break;
+//            case Mail::FETCH_SCHEDULE_EVERY_FIFTEEN_MINUTES:
+//                $fetch_command->everyFifteenMinutes();
+//                break;
+//            case Mail::FETCH_SCHEDULE_EVERY_THIRTY_MINUTES:
+//                $fetch_command->everyThirtyMinutes();
+//                break;
+//            case Mail::FETCH_SCHEDULE_HOURLY:
+//                $fetch_command->Hourly();
+//                break;
+//            default:
+//                $fetch_command->everyMinute();
+//                break;
+//        }
+//
+//        $schedule = \Eventy::filter('schedule', $schedule);
+//
+//        // Command runs as subprocess and sets cache mutex. If schedule:run command is killed
+//        // subprocess does not clear the mutex and it stays in the cache until cache:clear is executed.
+//        // By default, the lock will expire after 24 hours.
+//
+//        if (function_exists('shell_exec')) {
+//            $running_commands = $this->getRunningQueueProcesses();
+//
+//            if (count($running_commands) > 1) {
+//                // Stop all queue:work processes.
+//                // queue:work command is stopped by settings a cache key
+//                \Helper::queueWorkRestart();
+//                // Sometimes processes stuck and just continue running, so we need to kill them.
+//                // Sleep to let processes stop.
+//                sleep(1);
+//                // Check processes again.
+//                $worker_pids = $this->getRunningQueueProcesses();
+//
+//                if (count($worker_pids) > 1) {
+//                    // Current process also has to be killed, as otherwise it "stucks"
+//                    // $current_pid = getmypid();
+//                    // foreach ($worker_pids as $i => $pid) {
+//                    //     if ($pid == $current_pid) {
+//                    //         unset($worker_pids[$i]);
+//                    //         break;
+//                    //     }
+//                    // }
+//                    shell_exec('kill '.implode(' | kill ', $worker_pids));
+//                }
+//            }
+//        }
+//
+//        $queue_work_params = Config('app.queue_work_params');
+//        // Add identifier to avoid conflicts with other FreeScout instances on the same server.
+//        $queue_work_params['--queue'] .= ','.\Helper::getWorkerIdentifier();
+//
+//        $schedule->command('queue:work', $queue_work_params)
+//            ->everyMinute()
+//            ->withoutOverlapping()
+//            ->sendOutputTo(storage_path().'/logs/queue-jobs.log');
     }
 
     /**
