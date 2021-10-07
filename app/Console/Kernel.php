@@ -46,17 +46,17 @@ class Kernel extends ConsoleKernel
             $schedule->command('freescout:fetch-monitor')
                 ->everyMinute()
                 ->withoutOverlapping();
-//
-//        $schedule->command('freescout:update-folder-counters')
-//            ->hourly();
-//
-//        $schedule->command('freescout:module-check-licenses')
-//            ->daily();
-//
-//        // Check if user finished viewing conversation.
-//        $schedule->command('freescout:check-conv-viewers')
-//            ->everyMinute()
-//            ->withoutOverlapping();
+
+        $schedule->command('freescout:update-folder-counters')
+            ->hourly();
+
+        $schedule->command('freescout:module-check-licenses')
+            ->daily();
+
+        // Check if user finished viewing conversation.
+        $schedule->command('freescout:check-conv-viewers')
+            ->everyMinute()
+            ->withoutOverlapping();
 //
 //        $schedule->command('freescout:clean-send-log')
 //            ->monthly();
