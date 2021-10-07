@@ -2,11 +2,10 @@
 
 namespace App\Console;
 
-use Carbon\Carbon;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Misc\Mail;
 use App\Option;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
@@ -35,16 +34,18 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         // Remove failed jobs
-        $schedule->command('queue:flush')
-            ->weekly();
+//        $schedule->command('queue:flush')
+//            ->weekly();
+
+        try {
 
 //        // Restart processing queued jobs (just in case)
 //        $schedule->command('queue:restart')
 //            ->hourly();
 //
-//        $schedule->command('freescout:fetch-monitor')
-//            ->everyMinute()
-//            ->withoutOverlapping();
+        $schedule->command('freescout:fetch-monitor')
+            ->everyMinute()
+            ->withoutOverlapping();
 //
 //        $schedule->command('freescout:update-folder-counters')
 //            ->hourly();
@@ -152,6 +153,10 @@ class Kernel extends ConsoleKernel
 //            ->everyMinute()
 //            ->withoutOverlapping()
 //            ->sendOutputTo(storage_path().'/logs/queue-jobs.log');
+        } catch (\Exception $ex) {
+            print_r('Scheduler exception' . $ex . '\n');
+        }
+
     }
 
     /**
@@ -164,7 +169,7 @@ class Kernel extends ConsoleKernel
         $pids = [];
 
         try {
-            $processes = preg_split("/[\r\n]/", shell_exec("ps aux | grep '".\Helper::getWorkerIdentifier()."'"));
+            $processes = preg_split("/[\r\n]/", shell_exec("ps aux | grep '" . \Helper::getWorkerIdentifier() . "'"));
             foreach ($processes as $process) {
                 preg_match("/^[\S]+\s+([\d]+)\s+/", $process, $m);
                 if (!preg_match("/(sh \-c|grep )/", $process) && !empty($m[1])) {
@@ -184,7 +189,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         // Swiftmailer uses $_SERVER['SERVER_NAME'] in transport_deps.php
         // to set the host for EHLO command, if it is empty it uses [127.0.0.1].
