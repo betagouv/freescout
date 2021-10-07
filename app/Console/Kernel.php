@@ -33,19 +33,19 @@ class Kernel extends ConsoleKernel
             print_r("test");
         })->everyMinute();
 
-        // Remove failed jobs
-//        $schedule->command('queue:flush')
-//            ->weekly();
 
         try {
+            // Remove failed jobs
+            $schedule->command('queue:flush')
+                ->weekly();
 
-//        // Restart processing queued jobs (just in case)
-//        $schedule->command('queue:restart')
-//            ->hourly();
-//
-        $schedule->command('freescout:fetch-monitor')
-            ->everyMinute()
-            ->withoutOverlapping();
+            // Restart processing queued jobs (just in case)
+            $schedule->command('queue:restart')
+                ->hourly();
+
+            $schedule->command('freescout:fetch-monitor')
+                ->everyMinute()
+                ->withoutOverlapping();
 //
 //        $schedule->command('freescout:update-folder-counters')
 //            ->hourly();
