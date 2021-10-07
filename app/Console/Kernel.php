@@ -33,32 +33,32 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             print_r("test");
         })->everyMinute();
-//
-//        // Remove failed jobs
-//        $schedule->command('queue:flush')
-//            ->weekly();
-//
-//        // Restart processing queued jobs (just in case)
-//        $schedule->command('queue:restart')
-//            ->hourly();
-//
-//        $schedule->command('freescout:fetch-monitor')
-//            ->everyMinute()
-//            ->withoutOverlapping();
-//
-//        $schedule->command('freescout:update-folder-counters')
-//            ->hourly();
-//
-//        $schedule->command('freescout:module-check-licenses')
-//            ->daily();
-//
-//        // Check if user finished viewing conversation.
-//        $schedule->command('freescout:check-conv-viewers')
-//            ->everyMinute()
-//            ->withoutOverlapping();
-//
-//        $schedule->command('freescout:clean-send-log')
-//            ->monthly();
+
+        // Remove failed jobs
+        $schedule->command('queue:flush')
+            ->weekly();
+
+        // Restart processing queued jobs (just in case)
+        $schedule->command('queue:restart')
+            ->hourly();
+
+        $schedule->command('freescout:fetch-monitor')
+            ->everyMinute()
+            ->withoutOverlapping();
+
+        $schedule->command('freescout:update-folder-counters')
+            ->hourly();
+
+        $schedule->command('freescout:module-check-licenses')
+            ->daily();
+
+        // Check if user finished viewing conversation.
+        $schedule->command('freescout:check-conv-viewers')
+            ->everyMinute()
+            ->withoutOverlapping();
+
+        $schedule->command('freescout:clean-send-log')
+            ->monthly();
 //
 //        // Logs monitoring.
 //        $alert_logs_period = config('app.alert_logs_period');
