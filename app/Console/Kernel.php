@@ -57,34 +57,34 @@ class Kernel extends ConsoleKernel
         $schedule->command('freescout:check-conv-viewers')
             ->everyMinute()
             ->withoutOverlapping();
-//
-//        $schedule->command('freescout:clean-send-log')
-//            ->monthly();
-//
-//        // Logs monitoring.
-//        $alert_logs_period = config('app.alert_logs_period');
-//        if (config('app.alert_logs') && $alert_logs_period) {
-//            $logs_cron = '';
-//            switch ($alert_logs_period) {
-//                case 'hour':
-//                    $logs_cron = '0 * * * *';
-//                    break;
-//                case 'day':
-//                    $logs_cron = '0 0 * * *';
-//                    break;
-//                case 'week':
-//                    $logs_cron = '0 0 * * 0';
-//                    break;
-//                case 'month':
-//                    $logs_cron = '0 0 1 * *';
-//                    break;
-//            }
-//            if ($logs_cron) {
-//                $schedule->command('freescout:logs-monitor')
-//                    ->cron($logs_cron)
-//                    ->withoutOverlapping();
-//            }
-//        }
+
+        $schedule->command('freescout:clean-send-log')
+            ->monthly();
+
+        // Logs monitoring.
+        $alert_logs_period = config('app.alert_logs_period');
+        if (config('app.alert_logs') && $alert_logs_period) {
+            $logs_cron = '';
+            switch ($alert_logs_period) {
+                case 'hour':
+                    $logs_cron = '0 * * * *';
+                    break;
+                case 'day':
+                    $logs_cron = '0 0 * * *';
+                    break;
+                case 'week':
+                    $logs_cron = '0 0 * * 0';
+                    break;
+                case 'month':
+                    $logs_cron = '0 0 1 * *';
+                    break;
+            }
+            if ($logs_cron) {
+                $schedule->command('freescout:logs-monitor')
+                    ->cron($logs_cron)
+                    ->withoutOverlapping();
+            }
+        }
 //
 //        // Fetch emails from mailboxes
 //        $fetch_command = $schedule->command('freescout:fetch-emails')
