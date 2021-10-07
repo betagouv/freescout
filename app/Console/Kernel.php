@@ -114,11 +114,10 @@ class Kernel extends ConsoleKernel
             echo 'before';
             print_r($schedule);
             echo '\n';
-            echo 'after';
-
-            print_r(\Eventy);
 
             $schedule = \Eventy::filter('schedule', $schedule);
+            echo 'after';
+
             print_r($schedule);
             echo '\n';
 
