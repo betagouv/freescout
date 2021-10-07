@@ -111,7 +111,7 @@ class Kernel extends ConsoleKernel
         }
 
         try {
-            $schedule = \Eventy::filter('schedule', $schedule);
+//            $schedule = \Eventy::filter('schedule', $schedule);
 
             // Command runs as subprocess and sets cache mutex. If schedule:run command is killed
             // subprocess does not clear the mutex and it stays in the cache until cache:clear is executed.
@@ -143,15 +143,15 @@ class Kernel extends ConsoleKernel
 //                    }
 //                }
 //            }
-
-            $queue_work_params = Config('app.queue_work_params');
-            // Add identifier to avoid conflicts with other FreeScout instances on the same server.
-            $queue_work_params['--queue'] .= ',' . \Helper::getWorkerIdentifier();
-
-            $schedule->command('queue:work', $queue_work_params)
-                ->everyMinute()
-                ->withoutOverlapping()
-                ->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
+//
+//            $queue_work_params = Config('app.queue_work_params');
+//            // Add identifier to avoid conflicts with other FreeScout instances on the same server.
+//            $queue_work_params['--queue'] .= ',' . \Helper::getWorkerIdentifier();
+//
+//            $schedule->command('queue:work', $queue_work_params)
+//                ->everyMinute()
+//                ->withoutOverlapping()
+//                ->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
         } catch (\Exception $ex) {
             print_r('Scheduler exception' . $ex . '\n');
         }
