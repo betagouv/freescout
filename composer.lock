@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac4b963fda28d6b3acb9f9f5aa8dc63d",
+    "content-hash": "d04faf9944614aadddfa592ff9780f04",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2921,6 +2921,63 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.9.12"
             },
             "time": "2019-12-06T14:19:43+00:00"
+        },
+        {
+            "name": "queueworker/sansdaemon",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orobogenius/sansdaemon.git",
+                "reference": "26cd06ed02a449d5cd615a84fe0c2aa02752c376"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orobogenius/sansdaemon/zipball/26cd06ed02a449d5cd615a84fe0c2aa02752c376",
+                "reference": "26cd06ed02a449d5cd615a84fe0c2aa02752c376",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Queueworker\\SansDaemon\\SansDaemonServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Queueworker\\SansDaemon\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucky Ozoka",
+                    "email": "orobolucky@gmail.com"
+                }
+            ],
+            "description": "Batch process Laravel Queue without a daemon; Processes queue jobs and kills the process",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/orobogenius/sansdaemon/issues",
+                "source": "https://github.com/orobogenius/sansdaemon/tree/master"
+            },
+            "time": "2019-01-16T00:01:26+00:00"
         },
         {
             "name": "rachidlaasri/laravel-installer",

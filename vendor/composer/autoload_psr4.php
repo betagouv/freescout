@@ -41,6 +41,7 @@ return array(
     'RachidLaasri\\LaravelInstaller\\Helpers\\' => array($baseDir . '/overrides/RachidLaasri/LaravelInstaller/Helpers'),
     'RachidLaasri\\LaravelInstaller\\Controllers\\' => array($baseDir . '/overrides/RachidLaasri/LaravelInstaller/Controllers'),
     'RachidLaasri\\LaravelInstaller\\' => array($vendorDir . '/rachidlaasri/laravel-installer/src'),
+    'Queueworker\\SansDaemon\\' => array($vendorDir . '/queueworker/sansdaemon/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),

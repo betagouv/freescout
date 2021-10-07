@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f8359bd2b58ba3574b8fdbb66feacdffbcd592dd',
+        'reference' => '15910f5f9a43456a2970134b5ee202ae112a204b',
         'name' => 'freescout-helpdesk/freescout',
         'dev' => true,
     ),
@@ -253,7 +253,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f8359bd2b58ba3574b8fdbb66feacdffbcd592dd',
+            'reference' => '15910f5f9a43456a2970134b5ee202ae112a204b',
             'dev_requirement' => false,
         ),
         'fzaninotto/faker' => array(
@@ -837,6 +837,15 @@
             'install_path' => __DIR__ . '/../psy/psysh',
             'aliases' => array(),
             'reference' => '90da7f37568aee36b116a030c5f99c915267edd4',
+            'dev_requirement' => false,
+        ),
+        'queueworker/sansdaemon' => array(
+            'pretty_version' => 'v1.1.1',
+            'version' => '1.1.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../queueworker/sansdaemon',
+            'aliases' => array(),
+            'reference' => '26cd06ed02a449d5cd615a84fe0c2aa02752c376',
             'dev_requirement' => false,
         ),
         'rachidlaasri/laravel-installer' => array(

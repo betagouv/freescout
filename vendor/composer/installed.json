@@ -4368,6 +4368,66 @@
             "install-path": "../psy/psysh"
         },
         {
+            "name": "queueworker/sansdaemon",
+            "version": "v1.1.1",
+            "version_normalized": "1.1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orobogenius/sansdaemon.git",
+                "reference": "26cd06ed02a449d5cd615a84fe0c2aa02752c376"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orobogenius/sansdaemon/zipball/26cd06ed02a449d5cd615a84fe0c2aa02752c376",
+                "reference": "26cd06ed02a449d5cd615a84fe0c2aa02752c376",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "time": "2019-01-16T00:01:26+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Queueworker\\SansDaemon\\SansDaemonServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Queueworker\\SansDaemon\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucky Ozoka",
+                    "email": "orobolucky@gmail.com"
+                }
+            ],
+            "description": "Batch process Laravel Queue without a daemon; Processes queue jobs and kills the process",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/orobogenius/sansdaemon/issues",
+                "source": "https://github.com/orobogenius/sansdaemon/tree/master"
+            },
+            "install-path": "../queueworker/sansdaemon"
+        },
+        {
             "name": "rachidlaasri/laravel-installer",
             "version": "4.0.2",
             "version_normalized": "4.0.2.0",

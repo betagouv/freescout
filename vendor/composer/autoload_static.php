@@ -87,6 +87,10 @@ class ComposerStaticInit9382ab4a444ef313492b08539c8c268d
             'RachidLaasri\\LaravelInstaller\\Controllers\\' => 42,
             'RachidLaasri\\LaravelInstaller\\' => 30,
         ),
+        'Q' => 
+        array (
+            'Queueworker\\SansDaemon\\' => 23,
+        ),
         'P' => 
         array (
             'Psy\\' => 4,
@@ -335,6 +339,10 @@ class ComposerStaticInit9382ab4a444ef313492b08539c8c268d
         'RachidLaasri\\LaravelInstaller\\' => 
         array (
             0 => __DIR__ . '/..' . '/rachidlaasri/laravel-installer/src',
+        ),
+        'Queueworker\\SansDaemon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/queueworker/sansdaemon/src',
         ),
         'Psy\\' => 
         array (
@@ -4307,6 +4315,9 @@ class ComposerStaticInit9382ab4a444ef313492b08539c8c268d
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+        'Queueworker\\SansDaemon\\Console\\WorkCommand' => __DIR__ . '/..' . '/queueworker/sansdaemon/src/Console/WorkCommand.php',
+        'Queueworker\\SansDaemon\\SansDaemonServiceProvider' => __DIR__ . '/..' . '/queueworker/sansdaemon/src/SansDaemonServiceProvider.php',
+        'Queueworker\\SansDaemon\\Traits\\SansDaemonWorkerTrait' => __DIR__ . '/..' . '/queueworker/sansdaemon/src/Traits/SansDaemonWorkerTrait.php',
         'RachidLaasri\\LaravelInstaller\\Controllers\\DatabaseController' => __DIR__ . '/..' . '/rachidlaasri/laravel-installer/src/Controllers/DatabaseController.php',
         'RachidLaasri\\LaravelInstaller\\Controllers\\EnvironmentController' => __DIR__ . '/../..' . '/overrides/RachidLaasri/LaravelInstaller/Controllers/EnvironmentController.php',
         'RachidLaasri\\LaravelInstaller\\Controllers\\FinalController' => __DIR__ . '/../..' . '/overrides/RachidLaasri/LaravelInstaller/Controllers/FinalController.php',
