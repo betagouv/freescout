@@ -114,32 +114,32 @@ class Kernel extends ConsoleKernel
         // subprocess does not clear the mutex and it stays in the cache until cache:clear is executed.
         // By default, the lock will expire after 24 hours.
 
-//        if (function_exists('shell_exec')) {
-//            $running_commands = $this->getRunningQueueProcesses();
-//
-//            if (count($running_commands) > 1) {
-//                // Stop all queue:work processes.
-//                // queue:work command is stopped by settings a cache key
-//                \Helper::queueWorkRestart();
-//                // Sometimes processes stuck and just continue running, so we need to kill them.
-//                // Sleep to let processes stop.
-//                sleep(1);
-//                // Check processes again.
-//                $worker_pids = $this->getRunningQueueProcesses();
-//
-//                if (count($worker_pids) > 1) {
-//                    // Current process also has to be killed, as otherwise it "stucks"
-//                    // $current_pid = getmypid();
-//                    // foreach ($worker_pids as $i => $pid) {
-//                    //     if ($pid == $current_pid) {
-//                    //         unset($worker_pids[$i]);
-//                    //         break;
-//                    //     }
-//                    // }
-//                    shell_exec('kill '.implode(' | kill ', $worker_pids));
-//                }
-//            }
-//        }
+        if (function_exists('shell_exec')) {
+            $running_commands = $this->getRunningQueueProcesses();
+
+            if (count($running_commands) > 1) {
+                // Stop all queue:work processes.
+                // queue:work command is stopped by settings a cache key
+                \Helper::queueWorkRestart();
+                // Sometimes processes stuck and just continue running, so we need to kill them.
+                // Sleep to let processes stop.
+                sleep(1);
+                // Check processes again.
+                $worker_pids = $this->getRunningQueueProcesses();
+
+                if (count($worker_pids) > 1) {
+                    // Current process also has to be killed, as otherwise it "stucks"
+                    // $current_pid = getmypid();
+                    // foreach ($worker_pids as $i => $pid) {
+                    //     if ($pid == $current_pid) {
+                    //         unset($worker_pids[$i]);
+                    //         break;
+                    //     }
+                    // }
+                    shell_exec('kill '.implode(' | kill ', $worker_pids));
+                }
+            }
+        }
 
         $queue_work_params = Config('app.queue_work_params');
         // Add identifier to avoid conflicts with other FreeScout instances on the same server.
