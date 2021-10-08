@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Keep in mind that this function is also called on clearing cache.
-        
+
         // Remove failed jobs
         $schedule->command('queue:flush')
             ->weekly();
@@ -126,7 +126,7 @@ class Kernel extends ConsoleKernel
                 sleep(1);
                 // Check processes again.
                 $worker_pids = $this->getRunningQueueProcesses();
-                
+
                 if (count($worker_pids) > 1) {
                     // Current process also has to be killed, as otherwise it "stucks"
                     // $current_pid = getmypid();
@@ -145,7 +145,7 @@ class Kernel extends ConsoleKernel
         // Add identifier to avoid conflicts with other FreeScout instances on the same server.
         $queue_work_params['--queue'] .= ','.\Helper::getWorkerIdentifier();
 
-        $schedule->command('queue:work', $queue_work_params)
+        $schedule->command('queue:work --sansdaemon', $queue_work_params)
             ->everyMinute()
             ->withoutOverlapping()
             ->sendOutputTo(storage_path().'/logs/queue-jobs.log');
@@ -153,7 +153,7 @@ class Kernel extends ConsoleKernel
 
     /**
      * Get pids of the queue:work processes.
-     * 
+     *
      * @return [type] [description]
      */
     protected function getRunningQueueProcesses()
