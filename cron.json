@@ -1,7 +1,11 @@
 {
   "jobs": [
     {
-      "command": "* * * * * php /var/www/html/artisan queue:work --queue='emails,default' --once --tries=1 >> /dev/null 2>&1",
+      "command": "* * * * * php artisan schedule:run >> /dev/null 2>&1",
+      "size": "S"
+    },
+    {
+      "command": "* * * * * php artisan queue:work --queue='emails,default' --once --tries=1 >> /dev/null 2>&1",
       "size": "S"
     }
   ]
