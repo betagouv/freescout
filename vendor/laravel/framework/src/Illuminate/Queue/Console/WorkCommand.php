@@ -67,6 +67,7 @@ class WorkCommand extends Command
         if ($this->downForMaintenance() && $this->option('once')) {
             return $this->worker->sleep($this->option('sleep'));
         }
+        $this->line('<info> work command run');
 
         // We'll listen to the processed and failed events so we can write information
         // to the console as jobs are processed, which will let the developer watch
@@ -123,6 +124,8 @@ class WorkCommand extends Command
      */
     protected function listenForEvents()
     {
+        $this->line('<info> listen for event');
+
         $this->laravel['events']->listen(JobProcessing::class, function ($event) {
             $this->writeOutput($event->job, 'starting');
         });
